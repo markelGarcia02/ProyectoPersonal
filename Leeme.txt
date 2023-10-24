@@ -1,0 +1,2 @@
+Actualizaciones: Algo mas modulado, métodos cada uno en su respectivo sitio (clase), nuevos métodos, creación de DATA y la clase Conexion, creación de la BD y implementación de métodos de la BD de prueba
+Estado: Falta algún método que todavía no estoy seguro de como quiero implementarlo y falta organizar mejor tema interfaces y patrones

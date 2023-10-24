@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoPersonal", "ProyectoPersonal.csproj", "{B345D7F4-2252-4742-ACF3-868F4B06EF0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		nueva|Any CPU = nueva|Any CPU
+		nueva|x86 = nueva|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Debug|x86.ActiveCfg = Debug|x86
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Debug|x86.Build.0 = Debug|x86
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.nueva|Any CPU.ActiveCfg = nueva|Any CPU
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.nueva|Any CPU.Build.0 = nueva|Any CPU
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.nueva|x86.ActiveCfg = nueva|x86
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.nueva|x86.Build.0 = nueva|x86
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Release|x86.ActiveCfg = Release|x86
+		{B345D7F4-2252-4742-ACF3-868F4B06EF0B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD652BE4-60C1-4CA8-B225-678BC926A830}
+	EndGlobalSection
+EndGlobal
