@@ -5,13 +5,13 @@ using System.Data.OleDb;
 using System.Text;
 using System.Threading.Tasks;
 using ProyectoPersonal.Modelo;
+using ProyectoPersonal.Modelo.interfaces;
 
 namespace ProyectoPersonal.Data
 {
-    class Conexion
+    public class Conexion : IMetodosBD
     {
-
-        static public void leerUsuariosBD()
+        public void leerUsuariosBD()
         {
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "SELECT * FROM usuario";
@@ -45,7 +45,7 @@ namespace ProyectoPersonal.Data
             Console.Clear();
         }
 
-        static public void leerObjetosBD()
+        public void leerObjetosBD()
         {
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "SELECT * FROM objeto";
@@ -79,7 +79,7 @@ namespace ProyectoPersonal.Data
             Console.Clear();
         }
 
-        static public void eliminarUsuarioDeDB()
+        public void eliminarUsuarioDeDB()
         {
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "DELETE FROM usuario WHERE IdUsuario=";
@@ -115,7 +115,7 @@ namespace ProyectoPersonal.Data
             Console.Clear();
         }
 
-        static public void eliminarObjetoDeDB()
+        public void eliminarObjetoDeDB()
         {
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "DELETE FROM objeto WHERE IdObjeto=";
@@ -150,7 +150,7 @@ namespace ProyectoPersonal.Data
             Console.ReadKey();
             Console.Clear();
         }
-        static public void insertarUsuarioEnBD()
+        public void insertarUsuarioEnBD()
         {
             //La ruta de la BD
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
@@ -191,7 +191,7 @@ namespace ProyectoPersonal.Data
             Console.Clear();
         }
 
-        static public void insertarObjetoEnBD(int idUser)
+        public void insertarObjetoEnBD(int idUser)
         {
             //La ruta de la BD
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
@@ -233,7 +233,7 @@ namespace ProyectoPersonal.Data
             Console.Clear();
         }
 
-        static public void aniadirObjetoCarrito(int idUser, Objeto obj, double totalPrecio)
+        public void aniadirObjetoCarrito(int idUser, Objeto obj, double totalPrecio)
         {
             //La ruta de la BD
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
@@ -268,7 +268,7 @@ namespace ProyectoPersonal.Data
             Console.Clear();
         }
 
-        static public void actualizarUsuarioEnBD()
+        public void actualizarUsuarioEnBD()
         {
             //La ruta de la BD
             string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
@@ -367,53 +367,6 @@ namespace ProyectoPersonal.Data
             }
             Console.ReadKey();
             Console.Clear();
-        }
-
-        static public void MenuBD()
-        {
-            int opc;
-            Console.WriteLine("¿Qué quieres hacer?\n 1) Leer usuario en BD\n 2) Leer objeto en BD\n 3) Actualizar usuario en BD\n 4) Eliminar usuario en DB\n 5) Eliminar objeto en DB\n 6) Insertar usuario en DB\n 0) Salir");
-            opc = int.Parse(Console.ReadLine());
-            do
-            {
-                switch (opc)
-                {
-                    case 1:
-                        Console.Clear();
-                        leerUsuariosBD();
-                        break;
-                    case 2:
-                        Console.Clear();
-                        leerObjetosBD();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        actualizarUsuarioEnBD();
-                        break;
-                    case 4:
-                        Console.Clear();
-                        eliminarUsuarioDeDB();
-                        break;
-                    case 5:
-                        Console.Clear();
-                        eliminarObjetoDeDB();
-                        break;
-                    case 6:
-                        Console.Clear();
-                        insertarUsuarioEnBD();
-                        break;
-                    case 0:
-                        Console.Clear();
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Una opción de la lista!!");
-                        break;
-                }
-                Console.WriteLine("¿Qué quieres hacer?\n 1) Leer usuario en BD\n 2) Leer objeto en BD\n 3) Actualizar usuario en BD\n 4) Eliminar usuario en DB\n 5) Eliminar objeto en DB\n 6) Insertar usuario en DB\n 0) Salir");
-                opc = int.Parse(Console.ReadLine());
-
-            } while (opc != 0);
         }
     }
 }

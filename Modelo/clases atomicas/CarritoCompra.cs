@@ -7,7 +7,7 @@ using ProyectoPersonal.Controlador;
 
 namespace ProyectoPersonal.Modelo
 {
-    class CarritoCompra : GestorCompras
+    public class CarritoCompra : GestorCompras
     {
         private CarritoCompra[] compras = new CarritoCompra[0];
 

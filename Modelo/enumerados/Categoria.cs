@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoPersonal.Modelo
+namespace ProyectoPersonal.Modelo.enumerados
 {
-    class Categoria : Objeto
+    public class Categoria : Objeto
     {
         private enum listaCategorias
         {

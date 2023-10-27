@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoPersonal.Controlador
 {
-    class Validations
+    public class Validations
     {
         public int ReadInt()
         {

@@ -7,7 +7,7 @@ using ProyectoPersonal.Modelo;
 
 namespace ProyectoPersonal.Controlador
 {
-    abstract class GestorUsuarios
+    public abstract class GestorUsuarios
     {
         Validations validator = new Validations();
         private List<Usuario> users = new List<Usuario>();

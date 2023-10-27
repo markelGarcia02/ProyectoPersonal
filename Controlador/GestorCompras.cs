@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoPersonal.Controlador
 {
-    abstract class GestorCompras
+    public abstract class GestorCompras
     {
         //finalizarCompra()
         private List<Objeto> carrito = new List<Objeto>();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoPersonal.Modelo
 {
-    class Mensaje
+    public class Mensaje
     {
         private string[] mensajes = { };
         private int idAutor;

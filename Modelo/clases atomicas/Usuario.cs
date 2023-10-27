@@ -7,7 +7,7 @@ using ProyectoPersonal.Controlador;
 
 namespace ProyectoPersonal.Modelo
 {
-    class Usuario : GestorUsuarios
+    public class Usuario : GestorUsuarios
     {
         private int id; 
         private string email;

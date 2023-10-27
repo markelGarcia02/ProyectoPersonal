@@ -7,7 +7,7 @@ using ProyectoPersonal.Controlador;
 
 namespace ProyectoPersonal.Modelo
 {
-    class Objeto : GestorObjetos
+    public class Objeto : GestorObjetos
     {
         private double precio;
         private string titulo;
