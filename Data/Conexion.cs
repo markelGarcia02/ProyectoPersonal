@@ -11,12 +11,16 @@ namespace ProyectoPersonal.Data
 {
     public class Conexion : IMetodosBD
     {
+        public string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
+        public OleDbConnection conexion { get; }
+        public Conexion()
+        {
+            conexion = new OleDbConnection(ruta);
+        }
+
         public void leerUsuariosBD()
         {
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "SELECT * FROM usuario";
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -47,10 +51,7 @@ namespace ProyectoPersonal.Data
 
         public void leerObjetosBD()
         {
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "SELECT * FROM objeto";
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -81,16 +82,13 @@ namespace ProyectoPersonal.Data
 
         public void eliminarUsuarioDeDB()
         {
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "DELETE FROM usuario WHERE IdUsuario=";
             int id;
 
             Console.WriteLine("¿Qué id quieres eliminar?");
             id = int.Parse(Console.ReadLine());
             consulta = consulta + id;
-
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
+            
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -117,16 +115,13 @@ namespace ProyectoPersonal.Data
 
         public void eliminarObjetoDeDB()
         {
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             string consulta = "DELETE FROM objeto WHERE IdObjeto=";
             int id;
 
             Console.WriteLine("¿Qué id quieres eliminar?");
             id = int.Parse(Console.ReadLine());
             consulta = consulta + id;
-
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
+            
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -152,9 +147,6 @@ namespace ProyectoPersonal.Data
         }
         public void insertarUsuarioEnBD()
         {
-            //La ruta de la BD
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
-            //Leemos lo que vamos a insertar
             Console.WriteLine("Inserta un email, por favor:");
             string email = Console.ReadLine();
             Console.WriteLine("Inserta un nombre, por favor:");
@@ -167,8 +159,6 @@ namespace ProyectoPersonal.Data
             //Preparamos la query(consulta)
             string consulta = "INSERT INTO usuario(Email, NombreUsuario, Contrasenia, Saldo) VALUES ('" + email + "','" + nombre + "','" + contrasenia + "'," + saldo + ")";
             Console.WriteLine(consulta);
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -193,9 +183,6 @@ namespace ProyectoPersonal.Data
 
         public void insertarObjetoEnBD(int idUser)
         {
-            //La ruta de la BD
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
-            //Leemos lo que vamos a insertar
             Console.WriteLine("Inserta un titulo, por favor:");
             string titulo = Console.ReadLine();
             Console.WriteLine("Inserta una descripcion, por favor:");
@@ -209,8 +196,6 @@ namespace ProyectoPersonal.Data
             //Preparamos la query(consulta)
             string consulta = "INSERT INTO objeto(Titulo, Descripcion, Foto, Precio, IdUsuario) VALUES ('" + titulo + "','" + descripcion + "','" + foto + "'," + precio + "," + idUsuario + ")";
             Console.WriteLine(consulta);
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -235,17 +220,12 @@ namespace ProyectoPersonal.Data
 
         public void aniadirObjetoCarrito(int idUser, Objeto obj, double totalPrecio)
         {
-            //La ruta de la BD
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
-            //Leemos lo que vamos a insertar
             int idUsuario = idUser;
             int idObjeto = obj.IdObjeto;
 
             //Preparamos la query(consulta)
             string consulta = "INSERT INTO carrito(IdUsuario, IdObjeto, TotalPrecio) VALUES (" + idUsuario + "," + idObjeto + "," + totalPrecio + ")";
             Console.WriteLine(consulta);
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
             {
                 // Create a command and set its connection    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
@@ -270,8 +250,6 @@ namespace ProyectoPersonal.Data
 
         public void actualizarUsuarioEnBD()
         {
-            //La ruta de la BD
-            string ruta = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\markgarcia\source\repos\ProyectoPersonal\ProyectoPersonalMarkel.mdb";
             int opc;
             int id;
             string email = "";
@@ -326,8 +304,6 @@ namespace ProyectoPersonal.Data
             Console.WriteLine(consultaNombre);
             Console.WriteLine(consultaContrasenia);
             Console.WriteLine(consultaSaldo);
-            // Create a connection    
-            using (OleDbConnection conexion = new OleDbConnection(ruta))
             {
                 // Create a command and set its connection    
                 OleDbCommand comandoEmail = new OleDbCommand(consultaEmail, conexion);
