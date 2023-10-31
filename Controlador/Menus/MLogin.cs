@@ -31,7 +31,8 @@ namespace ProyectoPersonal.Controlador.Menus
                 {
                     case 1:
                         Console.Clear();
-                        break;
+						//falta
+						break;
                     case 2:
                         Console.Clear();
                         cnn.insertarUsuarioEnBD();

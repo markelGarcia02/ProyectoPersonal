@@ -29,12 +29,15 @@ namespace ProyectoPersonal.Controlador.Menus
                 {
                     case 1:
                         Console.Clear();
+                        //falta, seria un update
                         break;
                     case 2:
                         Console.Clear();
+                        //falta, seria un delete del objeto en carrito y un update en el saldo del usuario
                         break;
                     case 3:
                         Console.Clear();
+                        //falta, seria un delete de los objetos del carrito
                         break;
                     case 0:
                         Console.Clear();

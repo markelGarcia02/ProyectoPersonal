@@ -50,15 +50,19 @@ namespace ProyectoPersonal.Controlador.Menus
                         break;
                     case 3:
                         Console.Clear();
+                        //falta
                         break;
                     case 4:
                         Console.Clear();
+                        //falta
                         break;
                     case 5:
                         Console.Clear();
+                        //falta, seria agregar un objeto a la tabla favoritos pasando el idObjeto y el idUsuario
                         break;
                     case 6:
                         Console.Clear();
+                        //falta
                         break;
                     case 7:
                         Console.Clear();
