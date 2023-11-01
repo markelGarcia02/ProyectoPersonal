@@ -22,14 +22,14 @@ namespace ProyectoPersonal.Data
         {
             string consulta = "SELECT * FROM usuario";
             {
-                // Create a command and set its connection    
+                    
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                   
                 try
                 {
-                    // Open connecton    
+                        
                     conexion.Open();
-                    // Execute command    
+                     
                     using (OleDbDataReader miTabla = comando.ExecuteReader())
                     {
                         Console.WriteLine("------------Tabla usuario----------------");
@@ -53,14 +53,14 @@ namespace ProyectoPersonal.Data
         {
             string consulta = "SELECT * FROM objeto";
             {
-                // Create a command and set its connection    
+                
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                   
                 try
                 {
-                    // Open connecton    
+                     
                     conexion.Open();
-                    // Execute command    
+                      
                     using (OleDbDataReader miTabla = comando.ExecuteReader())
                     {
                         Console.WriteLine("------------Tabla objeto----------------");
@@ -90,14 +90,12 @@ namespace ProyectoPersonal.Data
             consulta = consulta + id;
             
             {
-                // Create a command and set its connection    
+                
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                 
                 try
-                {
-                    // Open connecton    
-                    conexion.Open();
-                    // Execute command    
+                {    
+                    conexion.Open();   
 
                     OleDbDataReader miTabla = comando.ExecuteReader();
 
@@ -123,14 +121,12 @@ namespace ProyectoPersonal.Data
             consulta = consulta + id;
             
             {
-                // Create a command and set its connection    
+                  
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                 
                 try
-                {
-                    // Open connecton    
-                    conexion.Open();
-                    // Execute command    
+                {   
+                    conexion.Open();    
 
                     OleDbDataReader miTabla = comando.ExecuteReader();
 
@@ -155,19 +151,18 @@ namespace ProyectoPersonal.Data
             string contrasenia = Console.ReadLine();
             Console.WriteLine("Inserta un saldo, por favor:");
             int saldo = int.Parse(Console.ReadLine());
-
-            //Preparamos la query(consulta)
+            
             string consulta = "INSERT INTO usuario(Email, NombreUsuario, Contrasenia, Saldo) VALUES ('" + email + "','" + nombre + "','" + contrasenia + "'," + saldo + ")";
             Console.WriteLine(consulta);
             {
-                // Create a command and set its connection    
+               
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                
                 try
                 {
-                    // Open connecton    
+                    
                     conexion.Open();
-                    // Execute command    
+                       
                     OleDbDataReader miTabla = comando.ExecuteReader();
                     Console.WriteLine("Insertado correctamente");
                     conexion.Close();
@@ -192,19 +187,18 @@ namespace ProyectoPersonal.Data
             Console.WriteLine("Inserta un precio, por favor:");
             double precio = int.Parse(Console.ReadLine());
             int idUsuario = idUser;
-
-            //Preparamos la query(consulta)
+            
             string consulta = "INSERT INTO objeto(Titulo, Descripcion, Foto, Precio, IdUsuario) VALUES ('" + titulo + "','" + descripcion + "','" + foto + "'," + precio + "," + idUsuario + ")";
             Console.WriteLine(consulta);
             {
-                // Create a command and set its connection    
+                
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                   
                 try
                 {
-                    // Open connecton    
+                       
                     conexion.Open();
-                    // Execute command    
+                     
                     OleDbDataReader miTabla = comando.ExecuteReader();
                     Console.WriteLine("Insertado correctamente");
                     conexion.Close();
@@ -222,19 +216,18 @@ namespace ProyectoPersonal.Data
         {
             int idUsuario = idUser;
             int idObjeto = obj.IdObjeto;
-
-            //Preparamos la query(consulta)
+            
             string consulta = "INSERT INTO carrito(IdUsuario, IdObjeto, TotalPrecio) VALUES (" + idUsuario + "," + idObjeto + "," + totalPrecio + ")";
             Console.WriteLine(consulta);
             {
-                // Create a command and set its connection    
+                  
                 OleDbCommand comando = new OleDbCommand(consulta, conexion);
-                // Open the connection and execute the select command.    
+                   
                 try
                 {
-                    // Open connecton    
+                        
                     conexion.Open();
-                    // Execute command    
+                        
                     OleDbDataReader miTabla = comando.ExecuteReader();
                     Console.WriteLine("Insertado correctamente");
                     conexion.Close();
@@ -270,7 +263,6 @@ namespace ProyectoPersonal.Data
                 switch (opc)
                 {
                     case 1:
-                        //Leemos lo que vamos a insertar
                         Console.WriteLine("Inserta un email, por favor:");
                         email = Console.ReadLine();
                         consultaEmail = consultaBase + " Email = '" + email + "' WHERE IdUsuario = " + id;
@@ -298,24 +290,23 @@ namespace ProyectoPersonal.Data
                 opc = int.Parse(Console.ReadLine());
 
             } while (opc != 0);
-
-            //Ver consulta
+            
             Console.WriteLine(consultaEmail);
             Console.WriteLine(consultaNombre);
             Console.WriteLine(consultaContrasenia);
             Console.WriteLine(consultaSaldo);
             {
-                // Create a command and set its connection    
+                
                 OleDbCommand comandoEmail = new OleDbCommand(consultaEmail, conexion);
                 OleDbCommand comandoNombre = new OleDbCommand(consultaNombre, conexion);
                 OleDbCommand comandoContrasenia = new OleDbCommand(consultaContrasenia, conexion);
                 OleDbCommand comandoSaldo = new OleDbCommand(consultaSaldo, conexion);
-                // Open the connection and execute the select command.    
+                    
                 try
                 {
-                    // Open connecton    
+                        
                     conexion.Open();
-                    // Execute command
+                    
                     if (consultaEmail != "")
                     {
                         OleDbDataReader miTabla = comandoEmail.ExecuteReader();
@@ -344,5 +335,70 @@ namespace ProyectoPersonal.Data
             Console.ReadKey();
             Console.Clear();
         }
-    }
+
+		public void actualizarPrecioObjeto()
+		{
+			int idObj;
+			double precio = 0;
+			string consultaBase = "UPDATE objeto SET  ";
+			string consultaPrecio = "";
+			Console.WriteLine("¿A qué Objeto quieres actualizar el precio (escriba el id por favor)?");
+			idObj = int.Parse(Console.ReadLine());
+			
+			Console.WriteLine("Inserta el nuevo precio, por favor:");
+			precio = double.Parse(Console.ReadLine());
+			consultaPrecio = consultaBase + " Precio = " + precio + " WHERE IdObjeto = " + idObj;		
+            
+			Console.WriteLine(consultaPrecio);
+			{
+
+				OleDbCommand comandoPrecio = new OleDbCommand(consultaPrecio, conexion);
+                
+				try
+				{   
+					conexion.Open();
+
+					if (consultaPrecio != "")
+					{
+						OleDbDataReader miTabla = comandoPrecio.ExecuteReader();
+					}
+
+					Console.WriteLine("Actualizado correctamente");
+					conexion.Close();
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error al actualizar!!" + ex.Message);
+				}
+			}
+			Console.ReadKey();
+			Console.Clear();
+		}
+
+		public void vaciarCarrito()
+		{
+			string consulta = "DELETE * FROM carrito ";
+            
+			{
+
+				OleDbCommand comando = new OleDbCommand(consulta, conexion);
+
+				try
+				{
+					conexion.Open();
+
+					OleDbDataReader miTabla = comando.ExecuteReader();
+
+					Console.WriteLine("Eliminado!");
+					conexion.Close();
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error al eliminar!!" + ex.Message);
+				}
+			}
+			Console.ReadKey();
+			Console.Clear();
+		}
+	}
 }

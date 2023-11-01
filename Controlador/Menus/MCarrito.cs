@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoPersonal.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace ProyectoPersonal.Controlador.Menus
 {
     public class MCarrito
     {
-        public static void MenuCarrito()
+		static Conexion cnn = new Conexion();
+		public static void MenuCarrito()
         {
             Validations validate = new Validations();
 
@@ -29,15 +31,15 @@ namespace ProyectoPersonal.Controlador.Menus
                 {
                     case 1:
                         Console.Clear();
-                        //falta, seria un update
-                        break;
+						cnn.actualizarPrecioObjeto();
+						break;
                     case 2:
                         Console.Clear();
                         //falta, seria un delete del objeto en carrito y un update en el saldo del usuario
                         break;
                     case 3:
                         Console.Clear();
-                        //falta, seria un delete de los objetos del carrito
+                        cnn.vaciarCarrito();
                         break;
                     case 0:
                         Console.Clear();
