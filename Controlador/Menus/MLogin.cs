@@ -13,6 +13,8 @@ namespace ProyectoPersonal.Controlador.Menus
         public static void MenuLogin()
         {
             Validations validate = new Validations();
+            GestorUsuarios GU = new GestorUsuarios();
+            int idUsuarioActivo;
 
             int opcionMenuLogin = 0;
 
@@ -21,7 +23,6 @@ namespace ProyectoPersonal.Controlador.Menus
                 Console.WriteLine("Este es un menu de login de prueba:");
                 Console.WriteLine("1) Iniciar sesion");
                 Console.WriteLine("2) Registrarse");
-                Console.WriteLine("3) Iniciar sesion sin registro");
                 Console.WriteLine("0) Salir del programa");
 
                 Console.WriteLine("Introduzca una opcion: ");
@@ -31,15 +32,11 @@ namespace ProyectoPersonal.Controlador.Menus
                 {
                     case 1:
                         Console.Clear();
-						//falta
+                        GU.IniciarSesion();
 						break;
                     case 2:
                         Console.Clear();
-                        cnn.insertarUsuarioEnBD();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        MUsuario.MenuUsuario();
+                        GU.Registrarse();
                         break;
                     case 0:
                         Environment.Exit(0);

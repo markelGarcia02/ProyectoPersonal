@@ -21,27 +21,27 @@ namespace ProyectoPersonal.Controlador.Menus
                 {
                     case 1:
                         Console.Clear();
-                        cnn.leerUsuariosBD();
+                        //cnn.LeerUsuariosBD();
                         break;
                     case 2:
                         Console.Clear();
-                        cnn.leerObjetosBD();
+                        //cnn.leerObjetosBD();
                         break;
                     case 3:
                         Console.Clear();
-                        cnn.actualizarUsuarioEnBD();
+                        //cnn.actualizarUsuarioEnBD();
                         break;
                     case 4:
                         Console.Clear();
-                        cnn.eliminarUsuarioDeDB();
+                        //cnn.eliminarUsuarioDeDB();
                         break;
                     case 5:
                         Console.Clear();
-                        cnn.eliminarObjetoDeDB();
+                        //cnn.eliminarObjetoDeDB();
                         break;
                     case 6:
                         Console.Clear();
-                        cnn.insertarUsuarioEnBD();
+                        //cnn.insertarUsuarioEnBD();
                         break;
                     case 0:
                         Console.Clear();

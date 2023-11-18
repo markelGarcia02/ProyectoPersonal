@@ -1,4 +1,5 @@
-﻿using ProyectoPersonal.Modelo;
+﻿using ProyectoPersonal.Data;
+using ProyectoPersonal.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,32 +9,21 @@ using System.Threading.Tasks;
 
 namespace ProyectoPersonal.Controlador
 {
-    public abstract class GestorCompras
+    public class GestorCompras
     {
-        //finalizarCompra()
-        private List<Objeto> carrito = new List<Objeto>();
-        Validations validator = new Validations();
+		static Conexion cnn = new Conexion();
+		static Updates up = new Updates();
 
-        public void pujar(Objeto newObj)
+        public void SumarDineroVendedor(int idUser, double precio)
         {
-            double precioObj = newObj.Precio;
-            Console.WriteLine("El precio del objeto sobre el que quiere hacer la puja es: " + precioObj);
-            Console.WriteLine("Introduzca su oferta: ");
-            double puja = validator.ReadDouble();
-            Console.WriteLine("Puja realizada por el valor de: " + puja);
-        }
+            double saldoDisponible = cnn.ConsultarSaldo(idUser);
+			up.ActualizarSaldoVendedor(idUser, precio, saldoDisponible);
+		}
 
-        public void aniadirCarrito(Objeto newObj)
-        {
-            carrito.Add(newObj);
-        }
-
-        public void vaciarCarrito()
-        {
-            if (carrito.Count > 0)
-            {
-                carrito.RemoveAll( carrito => carrito.Precio > 0 );
-            }
-        }
-    }
+		public void RestarDineroComprador(int idUser, double precio)
+		{
+			double saldoDisponible = cnn.ConsultarSaldo(idUser);
+			up.ActualizarSaldoComprador(idUser, precio, saldoDisponible);
+		}
+	}
 }

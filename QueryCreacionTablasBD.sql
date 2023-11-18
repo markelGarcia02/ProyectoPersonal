@@ -6,52 +6,32 @@ DROP TABLE IF EXISTS Carrito;
 DROP TABLE IF EXISTS Mensaje;
 
 
-CREATE TABLE Usuario(
-	IdUser Int Identity (1,1) primary key,
-	Email varchar(50) NOT NULL,
-	UserName varchar(50) NOT NULL,
-	LastName varchar(50),
-	Saldo Decimal NOT NULL
+CREATE TABLE [dbo].[Usuario] (
+    [IdUser]   INT          IDENTITY (1, 1) NOT NULL,
+    [Email]    VARCHAR (50) NOT NULL,
+    [UserName] VARCHAR (20) NOT NULL,
+    [LastName] VARCHAR (30) NULL,
+    [Password] VARCHAR (20) NOT NULL,
+    [Saldo]    FLOAT (53)   NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdUser] ASC)
 );
 
-CREATE TABLE Objeto(
-	IdObjeto Int Identity(1,1) Primary Key,
-	Precio Decimal NOT NULL,
-	Titulo varchar(25) NOT NULL,
-	Descripcion varchar(100),
-	Foto varchar(100),
-	IdUser Int NOT NULL,
-	Foreign Key (IdUser) References Usuario (IdUser) On Delete Cascade On Update Cascade
+CREATE TABLE [dbo].[Objeto] (
+    [IdObjeto]    INT           IDENTITY (1, 1) NOT NULL,
+    [Precio]      FLOAT (53)    NOT NULL,
+    [Titulo]      VARCHAR (25)  NOT NULL,
+    [Descripcion] VARCHAR (100) NULL,
+    [Foto]        VARCHAR (100) NULL,
+    [IdUser]      INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdObjeto] ASC),
+    FOREIGN KEY ([IdUser]) REFERENCES [dbo].[Usuario] ([IdUser]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE DatosBancarios(
-	IdCuentaBanco Int Identity (1,1) primary key,
-	IdUser Int NOT NULL,
-	Entidad varchar(50) NOT NULL,
-	NumTarjeta BigInt NOT NULL,
-	fCaducidad Date NOT NULL,
-	Foreign Key (IdUser) References Usuario (IdUser) On Delete Cascade On Update Cascade
+CREATE TABLE [dbo].[Carrito] (
+    [IdUser]   INT NOT NULL,
+    [IdObjeto] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdUser] ASC, [IdObjeto] ASC),
+    FOREIGN KEY ([IdObjeto]) REFERENCES [dbo].[Objeto] ([IdObjeto]) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY ([IdUser]) REFERENCES [dbo].[Usuario] ([IdUser])
 );
 
-CREATE TABLE Password(
-	IdPassword Int Identity (1,1) primary key,
-	IdUser Int NOT NULL,
-	Password varchar(25) NOT NULL,
-	Foreign Key (IdUser) References Usuario (IdUser) On Delete Cascade On Update Cascade
-);
-
-CREATE TABLE Carrito(
-	IdUser Int Identity (1,1) primary key,
-	IdObjeto Int NOT NULL,
-	TotalPrecio Decimal NOT NULL,
-	Foreign Key (IdUser) References Usuario (IdUser),
-	Foreign Key (IdObjeto) References Objeto (IdObjeto) On Delete Cascade On Update Cascade
-);
-
-CREATE TABLE Mensaje(
-	IdEmisor Int Identity (1,1) Primary Key,
-	IdReceptor Int NOT NULL,
-	Mensaje varchar(100) NOT NULL,
-	Foreign Key (IdEmisor) References Usuario (IdUser),
-	Foreign Key (IdReceptor) References Usuario (IdUser) 
-);

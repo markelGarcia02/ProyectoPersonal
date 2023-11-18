@@ -1,6 +1,7 @@
 ﻿using ProyectoPersonal.Data;
 using ProyectoPersonal.Modelo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,65 +12,58 @@ namespace ProyectoPersonal.Controlador.Menus
     public class MUsuario
     {
         static Conexion cnn = new Conexion();
-        public static void MenuUsuario()
+        static Inserts ins = new Inserts();
+        public static void MenuUsuario(int idActivo)
         {
 
             int opcionMenuUsuario = 0;
-            double precioTotalCarrito = 0;
-            Usuario actualUser = new Usuario();
-            Objeto objetoCarrito = new Objeto();
             Validations validate = new Validations();
 
             do
             {
                 Console.WriteLine("Este es un menu de usuario de prueba:");
-                Console.WriteLine("1) Vender");
-                Console.WriteLine("2) Añadir al carrito");
-                Console.WriteLine("3) Chatear con otros usuarios");
-                Console.WriteLine("4) Hacer una oferta");
-                Console.WriteLine("5) Añadir a favoritos");
-                Console.WriteLine("6) Filtrar por categoria");
-                Console.WriteLine("7) Menu carrito de compra");
+                Console.WriteLine("1) Explorar Objetos");
+                Console.WriteLine("2) Consultar saldo");
+                Console.WriteLine("3) Ver carrito");
+                Console.WriteLine("4) Ver mis objetos en venta");
+                Console.WriteLine("5) Vender un objeto");
+                Console.WriteLine("6) Comprar un objeto");
                 Console.WriteLine("0) Volver al menu Login");
-
                 Console.WriteLine("Introduzca una opcion: ");
                 opcionMenuUsuario = validate.ReadInt();
 
                 switch (opcionMenuUsuario)
                 {
                     case 1:
-                        //Cambiar por el Id del usuario del momento
                         Console.Clear();
-                        cnn.insertarObjetoEnBD(actualUser.Id);
+                        cnn.ExplorarObjetos();
                         break;
                     case 2:
-                        //Cambiar por el objeto enviado por el objeto seleccionado
-                        Console.Clear();
-                        precioTotalCarrito += objetoCarrito.Precio;
-                        cnn.aniadirObjetoCarrito(actualUser.Id, objetoCarrito, precioTotalCarrito);
+						Console.Clear();
+                        cnn.ConsultarSaldo(idActivo);
                         break;
                     case 3:
-                        Console.Clear();
-                        //falta
+						Console.Clear();
+                        cnn.VerCarrito(idActivo);
+                        cnn.PrecioCarrito(idActivo);
+                        MCarrito.MenuCarrito(idActivo);
                         break;
                     case 4:
-                        Console.Clear();
-                        //falta
+						Console.Clear();
+                        cnn.LeerObjetosDeUsuario(idActivo);
                         break;
                     case 5:
-                        Console.Clear();
-                        //falta, seria agregar un objeto a la tabla favoritos pasando el idObjeto y el idUsuario
+						Console.Clear();
+						ins.InsertarObjeto(idActivo);
                         break;
                     case 6:
-                        Console.Clear();
-                        //falta
-                        break;
-                    case 7:
-                        Console.Clear();
-                        MCarrito.MenuCarrito();
+						Console.Clear();
+						ins.InsertarObjetoCarrito(idActivo);
+                        MCarrito.MenuCarrito(idActivo);
                         break;
                     case 0:
                         Console.Clear();
+                        idActivo = -1;
                         MLogin.MenuLogin();
                         break;
                     default:

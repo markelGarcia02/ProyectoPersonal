@@ -1,54 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProyectoPersonal.Controlador.Menus;
+using ProyectoPersonal.Data;
 using ProyectoPersonal.Modelo;
 
 namespace ProyectoPersonal.Controlador
 {
-    public abstract class GestorUsuarios
+    public class GestorUsuarios
     {
         Validations validator = new Validations();
-        private List<Usuario> users = new List<Usuario>();
-        private List<Mensaje> mensajes = new List<Mensaje>();
-        //iniciarSesion() //hacer con ficheros
+		static Conexion cnn = new Conexion();
+		static Sesion ses = new Sesion();
+		static Inserts ins = new Inserts();
 
-        public GestorUsuarios()
+		public void IniciarSesion()
         {
+            List<string> userNames = new List<string>();
+			List<string> Passwords = new List<string>();
+			string name, pass, coincideName, coincidePass;
+			bool coincideUser = false;
+			bool coincidenAmbas = false;
+            int idActivo;
+			int n = 0;
 
+			userNames = ses.LeerUserName();
+			Passwords = ses.LeerPassword();
+			
+			do
+			{
+				Console.WriteLine("Introduzca el nombre de usuario, por favor");
+				name = Console.ReadLine();
+				Console.WriteLine("Introduzca la constraseña del usuario, por favor");
+				pass = Console.ReadLine();
+
+				for (int i = 0; i < userNames.Count; i++)
+				{
+					if (userNames[i].Contains(name))
+					{
+						coincideUser = true;
+						n = i;
+					}
+				}
+				if (coincideUser == true)
+				{
+					if (Passwords[n].Contains(pass))
+					{
+						coincidenAmbas = true;
+					}
+					else
+					{
+						Console.Clear();
+						Console.WriteLine("La contraseña es incorrecta");
+					}
+				}
+				else
+				{
+					Console.Clear();
+					Console.WriteLine("El usuario no existe");
+				}
+				if (coincidenAmbas == true)
+				{
+					idActivo = ses.SacarIdActivoPass(pass);
+					MUsuario.MenuUsuario(idActivo);
+				}
+			} while (coincidenAmbas != true);
         }
-        public void register()
+
+        public void Registrarse()
         {
-            string newEmail = "";
-            string newUserName = "";
-            string newPassword = "";
-            double newSaldo = 0;
-
-            Console.WriteLine("Por favor introduzca un email: ");
-            newEmail = validator.ReadString();
-            Console.WriteLine("Por favor introduzca un nombre de usuario: ");
-            newUserName = validator.ReadString();
-            Console.WriteLine("Por favor introduzca una contraseña: ");
-            newPassword = validator.ReadString();
-            Console.WriteLine("Por favor introduzca el saldo disponible: ");
-            newSaldo = validator.ReadDouble();
-            Usuario user = new Usuario(newEmail, newUserName, newPassword, newSaldo);
-
-            users.Add(user);
-            
-        }
-
-
-        public void chatear(Mensaje msg)
-        {
-            string m = "";
-            int idMensaje = 0;
-            Console.WriteLine("Introduzca el mensaje que quiera enviar al otro usuario");
-            m = validator.ReadString();
-            msg.Mensajes[idMensaje] = m;
-            mensajes.Add(msg);
-            idMensaje++;
-        }
+            string userActivo = ins.InsertarUsuario();
+            int idActivo = ses.SacarIdActivoUser(userActivo);
+			MUsuario.MenuUsuario(idActivo);
+		}
     }
 }
