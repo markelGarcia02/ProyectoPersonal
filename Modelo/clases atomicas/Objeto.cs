@@ -14,6 +14,7 @@ namespace ProyectoPersonal.Modelo
         private string descripcion;
         private string foto;
         private int idObjeto;
+        private int idUser;
 
         public Objeto(double precio, string titulo, string descripcion, string foto)
         {
@@ -35,5 +36,6 @@ namespace ProyectoPersonal.Modelo
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public string Foto { get => foto; set => foto = value; }
         public int IdObjeto { get => idObjeto; set => idObjeto = value; }
-    }
+		public int IdUser { get => idUser; set => idUser = value; }
+	}
 }

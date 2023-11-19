@@ -12,8 +12,6 @@ namespace ProyectoPersonal.Controlador
 {
     public class GestorUsuarios
     {
-        Validations validator = new Validations();
-		static Conexion cnn = new Conexion();
 		static Sesion ses = new Sesion();
 		static Inserts ins = new Inserts();
 

@@ -9,13 +9,6 @@ namespace ProyectoPersonal.Modelo
 {
     public class CarritoCompra : GestorCompras
     {
-        private CarritoCompra[] compras = new CarritoCompra[0];
-
-        public CarritoCompra(CarritoCompra[] compras)
-        {
-            Compras = compras;
-        }
-
-        CarritoCompra[] Compras { get => compras; set => compras = value; }
+        
     }
 }

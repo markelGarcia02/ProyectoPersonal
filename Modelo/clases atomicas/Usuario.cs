@@ -9,26 +9,29 @@ namespace ProyectoPersonal.Modelo
 {
     public class Usuario : GestorUsuarios
     {
-        private int id; 
+        private int idUser; 
         private string email;
-        private string nombreUsuario;
-        private string password;
+        private string userName;
+		private string lastName;
+		private string password;
         private double saldo;
 
-        public Usuario(int id, string email, string nombreUsuario, string password, double saldo)
+        public Usuario(int idUser, string email, string userName, string lastName, string password, double saldo)
         {
-            Id = id;
+            IdUser = idUser;
             Email = email;
-            NombreUsuario = nombreUsuario;
+			UserName = userName;
+            LastName = lastName;
             Password = password;
             Saldo = saldo;
         }
 
-        public Usuario( string email, string nombreUsuario, string password, double saldo)
+        public Usuario( string email, string userName, string lastName, string password, double saldo)
         {
             Email = email;
-            NombreUsuario = nombreUsuario;
-            Password = password;
+			UserName = userName;
+			LastName = lastName;
+			Password = password;
             Saldo = saldo;
         }
 
@@ -36,14 +39,14 @@ namespace ProyectoPersonal.Modelo
 
         public Usuario(int id)
         {
-            Id = id;
+			IdUser = idUser;
         }
 
-        public int Id { get => id; set => id = value; }
+        public int IdUser { get => idUser; set => idUser = value; }
         public string Email { get => email; set => email = value; }
-        public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
+        public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
         public double Saldo { get => saldo; set => saldo = value; }
-
-    }
+		public string LastName { get => lastName; set => lastName = value; }
+	}
 }

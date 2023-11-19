@@ -9,7 +9,6 @@ namespace ProyectoPersonal.Controlador
 {
     public abstract class GestorObjetos
     {
-        Validations validator = new Validations();
         
     }
 }
